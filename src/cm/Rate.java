@@ -1,10 +1,11 @@
 package cm;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class Rate
 {
-    enum CarParkKind
+    public enum CarParkKind
     {
         STAFF,
         STUDENT,
@@ -14,7 +15,7 @@ public class Rate
     CarParkKind kind;
     BigDecimal hourlyNormalRate;
     BigDecimal hourlyReducedRate;
-    public Rate()
+    public Rate(CarParkKind kind, BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> normalPeriods, ArrayList<Period> reducedPeriods)
     {
 
     }
