@@ -12,7 +12,7 @@ public class Period
     {
         return 0;
     }
-    public Boolean overlaps()
+    public Boolean overlaps(Period period)
     {
         return true;
     }
