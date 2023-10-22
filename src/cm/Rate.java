@@ -19,4 +19,8 @@ public class Rate
     {
 
     }
+    public BigDecimal calculate(Period periodStay)
+    {
+        return BigDecimal.valueOf(0);
+    }
 }
