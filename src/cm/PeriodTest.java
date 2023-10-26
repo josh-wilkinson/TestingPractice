@@ -14,12 +14,14 @@ class PeriodTest
     void zeroLessThanOrEqualToStartLessThanOrEqualToTwentyFour(){
         int start = 10;
         int end = 12;
+        assertTrue(start >= 0 && start <= 24);
         Period P = new Period(start, end);
     }
     @Test
     void zeroLessThanOrEqualToEndLessThanOrEqualToTwentyFour(){
         int start = 10;
         int end = 12;
+        assertTrue(end >= 0 && end <= 24);
         Period P = new Period(start, end);
     }
     @Test
@@ -34,39 +36,36 @@ class PeriodTest
     void startIsLessThanZero(){
         int start = -1;
         int end = 12;
+        assertTrue(start >= 0);
         Period P = new Period(start, end);
     }
-
     @Test
     void startIsGreaterThanTwentyFour(){
         int start = 25;
         int end = 12;
+        assertTrue(start <= 24);
         Period P = new Period(start, end);
     }
     @Test
     void endIsLessThanZero(){
         int start = 10;
         int end = -1;
+        assertTrue(end >= 0);
         Period P = new Period(start, end);
     }
     @Test
     void endIsGreaterThanTwentyFour(){
         int start = 10;
         int end = 25;
+        assertTrue(end <= 24);
         Period P = new Period(start, end);
-    }
-    @Test
-    void startEqualsNull(){
-
-    }
-    @Test
-    void endEqualsNull(){
-
     }
     // Valid Output
     @Test
     void startAndEndAreValid(){
-
+        int start = 10;
+        int end = 12;
+        //assertTrue();
     }
 
     /**
