@@ -1,5 +1,6 @@
 package cm;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,6 +11,7 @@ class PeriodTest
      * Constructor 'Period(int start, int end)' tests
      */
     // Valid Inputs
+    @DisplayName("Test Period constructor method")
     @Test
     void zeroLessThanOrEqualToStartLessThanOrEqualToTwentyFour(){
         int start = 10;
@@ -24,53 +26,62 @@ class PeriodTest
         assertTrue(end >= 0 && end <= 24);
         Period P = new Period(start, end);
     }
+    // Invalid inputs
     @Test
     void startIsLessThanEnd(){
         int start = 10;
         int end = 12;
-        assertTrue(start < end);
-        Period P = new Period(start, end);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Period P = new Period(start, end);
+        });
+
     }
     // Invalid Inputs
     @Test
     void startIsLessThanZero(){
         int start = -1;
         int end = 12;
-        assertTrue(start >= 0);
-        Period P = new Period(start, end);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Period P = new Period(start, end);
+        });
     }
     @Test
     void startIsGreaterThanTwentyFour(){
         int start = 25;
         int end = 12;
-        assertTrue(start <= 24);
-        Period P = new Period(start, end);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Period P = new Period(start, end);
+        });
     }
     @Test
     void endIsLessThanZero(){
         int start = 10;
         int end = -1;
-        assertTrue(end >= 0);
-        Period P = new Period(start, end);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Period P = new Period(start, end);
+        });
     }
     @Test
     void endIsGreaterThanTwentyFour(){
         int start = 10;
         int end = 25;
-        assertTrue(end <= 24);
-        Period P = new Period(start, end);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Period P = new Period(start, end);
+        });
     }
     // Valid Output
     @Test
     void startAndEndAreValid(){
         int start = 10;
         int end = 12;
-        //assertTrue();
+        Period p = new Period(start, end);
     }
 
     /**
      * Method 'duration()' tests
      */
+    // Valid outputs
+    @DisplayName("Test duration method")
     @Test
     void durationReturnsOne(){
         Period p = new Period(0, 1);
@@ -86,6 +97,7 @@ class PeriodTest
       * Method 'overlaps(Period)' tests
      */
     // Valid Outputs
+    @DisplayName("Test overlaps method")
     @Test
     void overlapsReturnsTrue1(){
         Period oldPeriod = new Period(4, 8);
