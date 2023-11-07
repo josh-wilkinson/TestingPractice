@@ -20,6 +20,7 @@ class PeriodTest
             Period P = new Period(start, end);
         }
         catch(IllegalArgumentException e){
+            fail(e.getMessage());
         }
     }
     @Test
@@ -30,6 +31,7 @@ class PeriodTest
             Period P = new Period(start, end);
         }
         catch(IllegalArgumentException e){
+            fail(e.getMessage());
         }
     }
     @Test
@@ -40,6 +42,7 @@ class PeriodTest
             Period P = new Period(start, end);
         }
         catch(IllegalArgumentException e){
+            fail(e.getMessage());
         }
     }
     // Invalid Inputs
@@ -80,7 +83,12 @@ class PeriodTest
     void startAndEndAreValid(){
         int start = 10;
         int end = 12;
-        Period p = new Period(start, end);
+        try{
+            Period p = new Period(start, end);
+        }
+        catch (IllegalArgumentException e){
+            fail(e.getMessage());
+        }
     }
 
     /**
