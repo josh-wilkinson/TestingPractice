@@ -27,8 +27,12 @@ class RateTest
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
 
-        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        assertTrue(0 <= reducedRate.intValue() && reducedRate.intValue() <= normalRate.intValue());
+        try{
+            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        }
+        catch(IllegalArgumentException e){
+            fail(e.getMessage());
+        }
     }
 
     @Test
@@ -45,15 +49,12 @@ class RateTest
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
 
-        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-
-        for (int i = 0; i < normalPeriods.size()-1; i++){
-            for (int j = i+1; j < normalPeriods.size(); j++){
-                if (normalPeriods.get(i).overlaps(normalPeriods.get(j)))
-                    overlapFlag = true;
-            }
+        try{
+            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         }
-        assertFalse(overlapFlag);
+        catch(IllegalArgumentException e){
+            fail(e.getMessage());
+        }
     }
 
     @Test
@@ -70,15 +71,12 @@ class RateTest
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
 
-        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-
-        for (int i = 0; i < reducedPeriods.size()-1; i++){
-            for (int j = i+1; j < reducedPeriods.size(); j++){
-                if (reducedPeriods.get(i).overlaps(reducedPeriods.get(j)))
-                    overlapFlag = true;
-            }
+        try{
+            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         }
-        assertFalse(overlapFlag);
+        catch(IllegalArgumentException e){
+            fail(e.getMessage());
+        }
     }
 
     @Test
@@ -95,15 +93,12 @@ class RateTest
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
 
-        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-
-        for (int i = 0; i < normalPeriods.size(); i++){
-            for (int j = 0; j < reducedPeriods.size(); j++){
-                if (reducedPeriods.get(i).overlaps(normalPeriods.get(j)))
-                    overlapFlag = true;
-            }
+        try{
+            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         }
-        assertFalse(overlapFlag);
+        catch(IllegalArgumentException e){
+            fail(e.getMessage());
+        }
     }
 
     // Invalid Inputs
@@ -176,12 +171,6 @@ class RateTest
 
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-
-            for (int i = 0; i < reducedPeriods.size()-1; i++){
-                for (int j = i+1; j < reducedPeriods.size(); j++){
-                    reducedPeriods.get(i).overlaps(reducedPeriods.get(j));
-                }
-            }
         });
     }
 
@@ -200,12 +189,6 @@ class RateTest
 
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-
-            for (int i = 0; i < normalPeriods.size()-1; i++){
-                for (int j = i+1; j < normalPeriods.size(); j++){
-                    normalPeriods.get(i).overlaps(normalPeriods.get(j));
-                }
-            }
         });
     }
 
@@ -225,12 +208,6 @@ class RateTest
 
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-
-            for (int i = 0; i < normalPeriods.size(); i++){
-                for (int j = 0; j < reducedPeriods.size(); j++){
-                    reducedPeriods.get(i).overlaps(normalPeriods.get(j));
-                }
-            }
         });
     }
 
