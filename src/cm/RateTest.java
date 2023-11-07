@@ -366,4 +366,40 @@ class RateTest
         assertEquals(r.calculate(periodStay).intValue(), 12);
     }
 
+    @Test
+    void normalRateIsNull(){
+        CarParkKind kind = CarParkKind.STUDENT;
+        BigDecimal normalRate = null;
+        BigDecimal reducedRate = new BigDecimal(1);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(10, 12));
+        normalPeriods.add(new Period(7, 10));
+        reducedPeriods.add(new Period(15, 17));
+        reducedPeriods.add(new Period(13, 15));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        });
+    }
+
+    @Test
+    void reducedRateIsNull(){
+        CarParkKind kind = CarParkKind.STUDENT;
+        BigDecimal normalRate = new BigDecimal(4);
+        BigDecimal reducedRate = null;
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(10, 12));
+        normalPeriods.add(new Period(7, 10));
+        reducedPeriods.add(new Period(15, 17));
+        reducedPeriods.add(new Period(13, 15));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        });
+    }
+
 }
