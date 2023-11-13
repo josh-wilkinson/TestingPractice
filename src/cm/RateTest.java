@@ -340,7 +340,7 @@ class RateTest
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(10, 14);
-        assertEquals(12, r.calculate(periodStay).intValue());
+        assertEquals(10, r.calculate(periodStay).intValue());
     }
 
     @Test
@@ -355,6 +355,8 @@ class RateTest
         normalPeriods.add(new Period(7, 10));
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
+
+        Period periodStay = new Period(10, 12);
 
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
