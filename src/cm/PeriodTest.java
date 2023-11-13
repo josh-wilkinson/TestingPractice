@@ -103,13 +103,13 @@ class PeriodTest
     @Test
     void durationReturnsOne(){
         Period p = new Period(0, 1);
-        assertEquals(p.duration(), 1);
+        assertEquals(1, p.duration());
     }
     @DisplayName("duration returns 24")
     @Test
     void durationReturnsTwentyFour(){
         Period p = new Period(0, 24);
-        assertEquals(p.duration(), 24);
+        assertEquals(24, p.duration());
     }
 
     /**

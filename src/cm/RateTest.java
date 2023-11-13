@@ -286,7 +286,7 @@ class RateTest
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(0, 6);
-        assertEquals(r.calculate(periodStay).intValue(), 0);
+        assertEquals(0, r.calculate(periodStay).intValue());
     }
 
     @Test
@@ -304,7 +304,7 @@ class RateTest
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(10, 12);
-        assertEquals(r.calculate(periodStay).intValue(), 8);
+        assertEquals(8, r.calculate(periodStay).intValue());
     }
 
     @Test
@@ -322,7 +322,7 @@ class RateTest
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(13, 15);
-        assertEquals(r.calculate(periodStay).intValue(), 4);
+        assertEquals(4, r.calculate(periodStay).intValue());
     }
 
     @Test
@@ -340,7 +340,7 @@ class RateTest
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(10, 14);
-        assertEquals(r.calculate(periodStay).intValue(), 12);
+        assertEquals(12, r.calculate(periodStay).intValue());
     }
 
     @Test
@@ -377,6 +377,25 @@ class RateTest
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
+    }
+
+    @Test
+    void zeroRates(){
+        CarParkKind kind = CarParkKind.STUDENT;
+        BigDecimal normalRate = new BigDecimal(1);
+        BigDecimal reducedRate = new BigDecimal(0);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(8, 10));
+        normalPeriods.add(new Period(10, 12));
+        reducedPeriods.add(new Period(13, 15));
+        reducedPeriods.add(new Period(18, 20));
+
+        Period periodStay = new Period(12, 13);
+
+        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        assertEquals(0, r.calculate(periodStay).intValue());
     }
 
 }
