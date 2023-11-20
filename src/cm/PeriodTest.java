@@ -57,15 +57,24 @@ class PeriodTest
     @Test
     void startIsGreaterThanTwentyFour(){
         int start = 25;
-        int end = 12;
+        int end = 26;
         assertThrows(IllegalArgumentException.class, () -> {
             Period P = new Period(start, end);
         });
     }
     @Test
     void endIsLessThanZero(){
-        int start = 10;
+        // This test won't trigger the correct branch!!
+        int start = -2;
         int end = -1;
+        assertThrows(IllegalArgumentException.class, () -> {
+            Period P = new Period(start, end);
+        });
+    }
+    @Test
+    void startIsGreaterThanOrEqualToEnd(){
+        int start = 11;
+        int end = 11;
         assertThrows(IllegalArgumentException.class, () -> {
             Period P = new Period(start, end);
         });
@@ -113,7 +122,7 @@ class PeriodTest
     }
 
     /**
-      * Method 'overlaps(Period)' tests
+     * Method 'overlaps(Period)' tests
      */
     /*
      Valid Outputs
