@@ -382,21 +382,21 @@ class RateTest
     }
 
     @Test
-    void zeroRates(){
-        CarParkKind kind = CarParkKind.STUDENT;
-        BigDecimal normalRate = new BigDecimal(1);
-        BigDecimal reducedRate = new BigDecimal(0);
+    void kindEqualsVisitor(){
+        CarParkKind kind = CarParkKind.VISITOR;
+        BigDecimal normalRate = new BigDecimal(5);
+        BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        normalPeriods.add(new Period(8, 10));
         normalPeriods.add(new Period(10, 12));
+        normalPeriods.add(new Period(7, 10));
+        reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
-        reducedPeriods.add(new Period(18, 20));
-
-        Period periodStay = new Period(12, 13);
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        Period periodStay = new Period(13, 14);
+
         assertEquals(0, r.calculate(periodStay).intValue());
     }
 
