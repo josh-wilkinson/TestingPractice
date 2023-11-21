@@ -182,10 +182,11 @@ class RateTest
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        normalPeriods.add(new Period(15, 17));
-        normalPeriods.add(new Period(13, 15));
+        normalPeriods.add(new Period(7, 10));
+        normalPeriods.add(new Period(7, 10));
+        normalPeriods.add(new Period(7, 10));
         reducedPeriods.add(new Period(7, 10));
-        reducedPeriods.add(new Period(8, 12));
+        reducedPeriods.add(new Period(13, 15));
 
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
@@ -290,9 +291,9 @@ class RateTest
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
         normalPeriods.add(new Period(0, 10));
-        normalPeriods.add(new Period(11, 13));
+        normalPeriods.add(new Period(9, 13));
 
-        reducedPeriods.add(new Period(12, 14));
+        reducedPeriods.add(new Period(13, 14));
 
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
