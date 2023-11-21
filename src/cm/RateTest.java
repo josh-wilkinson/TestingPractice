@@ -27,12 +27,9 @@ class RateTest
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
 
-        try{
-            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        }
-        catch(IllegalArgumentException e){
-            fail(e.getMessage());
-        }
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        assertNotNull(rate);
+        assertInstanceOf(Rate.class, rate);
     }
 
     @Test
@@ -49,12 +46,9 @@ class RateTest
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
 
-        try{
-            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        }
-        catch(IllegalArgumentException e){
-            fail(e.getMessage());
-        }
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        assertNotNull(rate);
+        assertInstanceOf(Rate.class, rate);
     }
 
     @Test
@@ -71,12 +65,9 @@ class RateTest
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
 
-        try{
-            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        }
-        catch(IllegalArgumentException e){
-            fail(e.getMessage());
-        }
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        assertNotNull(rate);
+        assertInstanceOf(Rate.class, rate);
     }
 
     @Test
@@ -93,12 +84,9 @@ class RateTest
         reducedPeriods.add(new Period(15, 17));
         reducedPeriods.add(new Period(13, 15));
 
-        try{
-            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        }
-        catch(IllegalArgumentException e){
-            fail(e.getMessage());
-        }
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        assertNotNull(rate);
+        assertInstanceOf(Rate.class, rate);
     }
 
     // Invalid Inputs
@@ -245,44 +233,6 @@ class RateTest
     }
 
     @Test
-    void normalRateIsNull(){
-        CarParkKind kind = CarParkKind.STUDENT;
-        BigDecimal normalRate = null;
-        BigDecimal reducedRate = new BigDecimal(1);
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
-
-        normalPeriods.add(new Period(10, 12));
-        normalPeriods.add(new Period(7, 10));
-        reducedPeriods.add(new Period(15, 17));
-        reducedPeriods.add(new Period(13, 15));
-
-        Period periodStay = new Period(10, 12);
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        });
-    }
-
-    @Test
-    void reducedRateIsNull(){
-        CarParkKind kind = CarParkKind.STUDENT;
-        BigDecimal normalRate = new BigDecimal(4);
-        BigDecimal reducedRate = null;
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
-
-        normalPeriods.add(new Period(10, 12));
-        normalPeriods.add(new Period(7, 10));
-        reducedPeriods.add(new Period(15, 17));
-        reducedPeriods.add(new Period(13, 15));
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        });
-    }
-
-    @Test
     void invalidNormalPeriods(){
         CarParkKind kind = CarParkKind.STUDENT;
         BigDecimal normalRate = new BigDecimal(5);
@@ -401,6 +351,44 @@ class RateTest
     }
 
     @Test
+    void normalRateIsNull(){
+        CarParkKind kind = CarParkKind.STUDENT;
+        BigDecimal normalRate = null;
+        BigDecimal reducedRate = new BigDecimal(1);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(10, 12));
+        normalPeriods.add(new Period(7, 10));
+        reducedPeriods.add(new Period(15, 17));
+        reducedPeriods.add(new Period(13, 15));
+
+        Period periodStay = new Period(10, 12);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        });
+    }
+
+    @Test
+    void reducedRateIsNull(){
+        CarParkKind kind = CarParkKind.STUDENT;
+        BigDecimal normalRate = new BigDecimal(4);
+        BigDecimal reducedRate = null;
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(10, 12));
+        normalPeriods.add(new Period(7, 10));
+        reducedPeriods.add(new Period(15, 17));
+        reducedPeriods.add(new Period(13, 15));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        });
+    }
+
+    @Test
     void kindEqualsVisitor(){
         CarParkKind kind = CarParkKind.VISITOR;
         BigDecimal normalRate = new BigDecimal(5);
@@ -415,7 +403,6 @@ class RateTest
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(13, 14);
-
         assertEquals(0, r.calculate(periodStay).intValue());
     }
 

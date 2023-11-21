@@ -14,36 +14,29 @@ class PeriodTest
     @DisplayName("Test Period constructor method")
     @Test
     void startBetweenZeroAndTwentyFour(){
+        // This test is to check if the start value is between 0 and 24
         int start = 10;
         int end = 12;
-        try{
-            Period P = new Period(start, end);
-        }
-        catch(IllegalArgumentException e){
-            fail(e.getMessage());
-        }
+        Period period = new Period(start, end);
+        assertNotNull(period);
+        assertInstanceOf(Period.class, period);
     }
     @Test
     void endBetweenZeroAndTwentyFour(){
+        // This test is to check if the end value is between 0 and 24
         int start = 10;
         int end = 12;
-        try{
-            Period P = new Period(start, end);
-        }
-        catch(IllegalArgumentException e){
-            fail(e.getMessage());
-        }
+        Period period = new Period(start, end);
+        assertNotNull(period);
+        assertInstanceOf(Period.class, period);
     }
     @Test
     void startIsLessThanEnd(){
         int start = 10;
         int end = 12;
-        try{
-            Period P = new Period(start, end);
-        }
-        catch(IllegalArgumentException e){
-            fail(e.getMessage());
-        }
+        Period period = new Period(start, end);
+        assertNotNull(period);
+        assertInstanceOf(Period.class, period);
     }
     // Invalid Inputs
     @Test
@@ -92,12 +85,9 @@ class PeriodTest
     void startAndEndAreValid(){
         int start = 10;
         int end = 12;
-        try{
-            Period p = new Period(start, end);
-        }
-        catch (IllegalArgumentException e){
-            fail(e.getMessage());
-        }
+        Period period = new Period(start, end);
+        assertNotNull(period);
+        assertInstanceOf(Period.class, period);
     }
 
     /**
