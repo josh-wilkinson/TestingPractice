@@ -13,7 +13,7 @@ class RateTest
     /**
      * Constructor 'Rate(...)' tests
      */
-    @DisplayName("Test Rate constructor method")
+    @DisplayName("Test 0 <= reducedRate <= normalRate, expected Rate instance")
     @Test
     void reducedRateIsGreaterThanOrEqualToZeroAndLessThanOrEqualToNormalRate(){
         CarParkKind kind = CarParkKind.STAFF;
@@ -31,7 +31,7 @@ class RateTest
         assertNotNull(rate);
         assertInstanceOf(Rate.class, rate);
     }
-
+    @DisplayName("Test No overlap in normalPeriods, expected Rate instance")
     @Test
     void noOverlapInNormalPeriods(){
         CarParkKind kind = CarParkKind.VISITOR;
@@ -50,7 +50,7 @@ class RateTest
         assertNotNull(rate);
         assertInstanceOf(Rate.class, rate);
     }
-
+    @DisplayName("Test No overlap in reducedPeriods, expected Rate instance")
     @Test
     void noOverlapInReducedPeriods(){
         CarParkKind kind = CarParkKind.VISITOR;
@@ -69,7 +69,7 @@ class RateTest
         assertNotNull(rate);
         assertInstanceOf(Rate.class, rate);
     }
-
+    @DisplayName("Test No overlap between reduced and normal periods, expected Rate instance")
     @Test
     void noOverlapBetweenNormalAndReducedPeriods(){
         CarParkKind kind = CarParkKind.VISITOR;
@@ -88,8 +88,8 @@ class RateTest
         assertNotNull(rate);
         assertInstanceOf(Rate.class, rate);
     }
-
     // Invalid Inputs
+    @DisplayName("Test reducedRate > normalRate, expected IllegalArgumentException")
     @Test
     void reducedRateIsGreaterThanNormalRate(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -107,7 +107,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test normalRate < 0, expected IllegalArgumentException")
     @Test
     void normalRateIsLessThanZero(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -125,7 +125,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test reducedRate < 0, expected IllegalArgumentException")
     @Test
     void reducedRateIsLessThanZero(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -143,7 +143,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test overlap in reducedPeriods, expected IllegalArgumentException")
     @Test
     void overlapInReducedPeriods(){
         CarParkKind kind = CarParkKind.MANAGEMENT;
@@ -161,7 +161,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test overlap in normalPeriods, expected IllegalArgumentException")
     @Test
     void overlapInNormalPeriods(){
         CarParkKind kind = CarParkKind.MANAGEMENT;
@@ -180,7 +180,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test overlap between normal and reduced periods, expected IllegalArgumentException")
     @Test
     void overlapBetweenNormalAndReducedPeriods(){
         CarParkKind kind = CarParkKind.MANAGEMENT;
@@ -199,7 +199,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test normalPeriods = null, expected IllegalArgumentException")
     @Test
     void normalPeriodsEqualsNull(){
         CarParkKind kind = CarParkKind.STAFF;
@@ -215,7 +215,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test reducedPeriods = null, expected IllegalArgumentException")
     @Test
     void reducedPeriodsEqualsNull(){
         CarParkKind kind = CarParkKind.STAFF;
@@ -231,7 +231,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test invalid normalPeriods, expected IllegalArgumentException")
     @Test
     void invalidNormalPeriods(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -254,7 +254,7 @@ class RateTest
      * Method 'calculate(Period periodStay)' tests
      */
     // Invalid Input
-    @DisplayName("Test calculate method")
+    @DisplayName("Test periodStay = NULL, expected IllegalArgumentException")
     @Test
     void periodStayEqualsNull(){
         CarParkKind kind = CarParkKind.STAFF;
@@ -275,8 +275,8 @@ class RateTest
             r.calculate(periodStay);
         });
     }
-
     // Valid Outputs
+    @DisplayName("Test unspecified period, expected 0")
     @Test
     void unspecifiedPeriod(){
         // the going rate should be FREE (0) if the range is unspecified
@@ -295,7 +295,7 @@ class RateTest
         Period periodStay = new Period(0, 6);
         assertEquals(0, r.calculate(periodStay).intValue());
     }
-
+    @DisplayName("Test periodStay.overlaps(this.normalPeriods), expected 8")
     @Test
     void periodStayOverlapsNormalPeriods(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -313,7 +313,7 @@ class RateTest
         Period periodStay = new Period(10, 12);
         assertEquals(8, r.calculate(periodStay).intValue());
     }
-
+    @DisplayName("Test periodStay.overlaps(this.reducedPeriods), expected 4")
     @Test
     void periodStayOverlapsReducedPeriods(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -331,7 +331,7 @@ class RateTest
         Period periodStay = new Period(13, 15);
         assertEquals(4, r.calculate(periodStay).intValue());
     }
-
+    @DisplayName("Test periodStay.overlaps(this.normalPeriods) AND periodStay.overlaps(this.reducedPeriods), expected 10")
     @Test
     void periodStayOverlapsNormalAndReducedPeriods(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -349,7 +349,9 @@ class RateTest
         Period periodStay = new Period(10, 14);
         assertEquals(10, r.calculate(periodStay).intValue());
     }
-
+    // Extra tests added after task 1
+    // Invalid inputs
+    @DisplayName("Test normalRate = Null, expected IllegalArgumentException")
     @Test
     void normalRateIsNull(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -369,7 +371,7 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    @DisplayName("Test reducedRate = Null, expected IllegalArgumentException")
     @Test
     void reducedRateIsNull(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -387,7 +389,8 @@ class RateTest
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         });
     }
-
+    // Valid output
+    @DisplayName("Test kind = VISITOR, expected Rate instance")
     @Test
     void kindEqualsVisitor(){
         CarParkKind kind = CarParkKind.VISITOR;
