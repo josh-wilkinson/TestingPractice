@@ -28,7 +28,6 @@ class RateTest
         reducedPeriods.add(new Period(13, 15));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        assertNotNull(rate);
         assertInstanceOf(Rate.class, rate);
     }
     @DisplayName("Test No overlap in normalPeriods, expected Rate instance")
@@ -47,7 +46,6 @@ class RateTest
         reducedPeriods.add(new Period(13, 15));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        assertNotNull(rate);
         assertInstanceOf(Rate.class, rate);
     }
     @DisplayName("Test No overlap in reducedPeriods, expected Rate instance")
@@ -66,7 +64,6 @@ class RateTest
         reducedPeriods.add(new Period(13, 15));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        assertNotNull(rate);
         assertInstanceOf(Rate.class, rate);
     }
     @DisplayName("Test No overlap between reduced and normal periods, expected Rate instance")
@@ -85,7 +82,6 @@ class RateTest
         reducedPeriods.add(new Period(13, 15));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        assertNotNull(rate);
         assertInstanceOf(Rate.class, rate);
     }
     // Invalid Inputs

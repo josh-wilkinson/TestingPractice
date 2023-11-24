@@ -18,7 +18,6 @@ class PeriodTest
         int start = 10;
         int end = 12;
         Period period = new Period(start, end);
-        assertNotNull(period);
         assertInstanceOf(Period.class, period);
     }
     @DisplayName("Period Test 0 <= end <= 24, expected Period instance")
@@ -29,7 +28,6 @@ class PeriodTest
         int start = 0;
         int end = 10;
         Period period = new Period(start, end);
-        assertNotNull(period);
         assertInstanceOf(Period.class, period);
     }
     @DisplayName("Period Test start < end, expected Period instance")
@@ -40,7 +38,6 @@ class PeriodTest
         int start = 4;
         int end = 8;
         Period period = new Period(start, end);
-        assertNotNull(period);
         assertInstanceOf(Period.class, period);
     }
     // Invalid Inputs
@@ -97,7 +94,6 @@ class PeriodTest
         int start = 0;
         int end = 24;
         Period period = new Period(start, end);
-        assertNotNull(period);
         assertInstanceOf(Period.class, period);
     }
 
