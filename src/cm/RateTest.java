@@ -52,16 +52,16 @@ class RateTest
     @Test
     void noOverlapInReducedPeriods(){
         CarParkKind kind = CarParkKind.VISITOR;
-        BigDecimal normalRate = new BigDecimal(8);
-        BigDecimal reducedRate = new BigDecimal(5);
+        BigDecimal normalRate = new BigDecimal(4);
+        BigDecimal reducedRate = new BigDecimal(3);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
         boolean overlapFlag = false;
 
-        normalPeriods.add(new Period(10, 12));
-        normalPeriods.add(new Period(7, 10));
-        reducedPeriods.add(new Period(15, 17));
-        reducedPeriods.add(new Period(13, 15));
+        normalPeriods.add(new Period(15, 17));
+        normalPeriods.add(new Period(13, 15));
+        reducedPeriods.add(new Period(10, 12));
+        reducedPeriods.add(new Period(7, 10));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         assertInstanceOf(Rate.class, rate);
@@ -70,16 +70,16 @@ class RateTest
     @Test
     void noOverlapBetweenNormalAndReducedPeriods(){
         CarParkKind kind = CarParkKind.VISITOR;
-        BigDecimal normalRate = new BigDecimal(8);
-        BigDecimal reducedRate = new BigDecimal(5);
+        BigDecimal normalRate = new BigDecimal(10);
+        BigDecimal reducedRate = new BigDecimal(6);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
         boolean overlapFlag = false;
 
-        normalPeriods.add(new Period(10, 12));
-        normalPeriods.add(new Period(7, 10));
-        reducedPeriods.add(new Period(15, 17));
-        reducedPeriods.add(new Period(13, 15));
+        normalPeriods.add(new Period(6, 12));
+        normalPeriods.add(new Period(0, 5));
+        reducedPeriods.add(new Period(16, 17));
+        reducedPeriods.add(new Period(12, 15));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         assertInstanceOf(Rate.class, rate);
@@ -95,9 +95,7 @@ class RateTest
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
         normalPeriods.add(new Period(10, 12));
-        normalPeriods.add(new Period(7, 10));
         reducedPeriods.add(new Period(15, 17));
-        reducedPeriods.add(new Period(13, 15));
 
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
@@ -112,10 +110,8 @@ class RateTest
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        normalPeriods.add(new Period(10, 12));
-        normalPeriods.add(new Period(7, 10));
-        reducedPeriods.add(new Period(15, 17));
-        reducedPeriods.add(new Period(13, 15));
+        normalPeriods.add(new Period(0, 10));
+        reducedPeriods.add(new Period(10, 20));
 
         assertThrows(IllegalArgumentException.class, () -> {
             Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
@@ -161,7 +157,7 @@ class RateTest
     @Test
     void overlapInNormalPeriods(){
         CarParkKind kind = CarParkKind.MANAGEMENT;
-        BigDecimal normalRate = new BigDecimal(3);
+        BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
@@ -180,8 +176,8 @@ class RateTest
     @Test
     void overlapBetweenNormalAndReducedPeriods(){
         CarParkKind kind = CarParkKind.MANAGEMENT;
-        BigDecimal normalRate = new BigDecimal(3);
-        BigDecimal reducedRate = new BigDecimal(1);
+        BigDecimal normalRate = new BigDecimal(100);
+        BigDecimal reducedRate = new BigDecimal(50);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
         boolean overlapFlag = false;
@@ -277,7 +273,7 @@ class RateTest
     void unspecifiedPeriod(){
         // the going rate should be FREE (0) if the range is unspecified
         CarParkKind kind = CarParkKind.STUDENT;
-        BigDecimal normalRate = new BigDecimal(4);
+        BigDecimal normalRate = new BigDecimal(11);
         BigDecimal reducedRate = new BigDecimal(2);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
