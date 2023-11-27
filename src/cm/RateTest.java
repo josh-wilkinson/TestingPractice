@@ -514,4 +514,40 @@ class RateTest
         assertEquals(6.66, r.calculate(periodStay).doubleValue());
     }
 
+    // STAFF
+    @DisplayName("Test STAFF pays under 10.00, expected 5")
+    @Test
+    void staffPaysBelowMaxAmount(){
+        CarParkKind kind = CarParkKind.STAFF;
+        BigDecimal normalRate = new BigDecimal(4);
+        BigDecimal reducedRate = new BigDecimal(1);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(9, 12));
+        normalPeriods.add(new Period(14, 18));
+        reducedPeriods.add(new Period(12, 14));
+
+        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        Period periodStay = new Period(11, 13);
+        assertEquals(5, r.calculate(periodStay).doubleValue());
+    }
+    @DisplayName("Test STAFF pays max amount, expected 10.00")
+    @Test
+    void staffPaysMaxAmount(){
+        CarParkKind kind = CarParkKind.STAFF;
+        BigDecimal normalRate = new BigDecimal(4);
+        BigDecimal reducedRate = new BigDecimal(2);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(9, 12));
+        normalPeriods.add(new Period(14, 18));
+        reducedPeriods.add(new Period(12, 14));
+
+        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        Period periodStay = new Period(9, 17);
+        assertEquals(10.00, r.calculate(periodStay).doubleValue());
+    }
+
 }
