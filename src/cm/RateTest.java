@@ -401,4 +401,45 @@ class RateTest
         assertEquals(0, r.calculate(periodStay).intValue());
     }
 
+    /**
+     * New TDD test cases for method 'calculate(Period periodStay)'
+     */
+    // Valid inputs
+    @DisplayName("Test VISITOR doesn't pay, expected 0")
+    @Test
+    void visitorGoesFree(){
+        CarParkKind kind = CarParkKind.VISITOR;
+        BigDecimal normalRate = new BigDecimal(5);
+        BigDecimal reducedRate = new BigDecimal(4);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(10, 12));
+        normalPeriods.add(new Period(7, 10));
+        reducedPeriods.add(new Period(15, 17));
+        reducedPeriods.add(new Period(13, 15));
+
+        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        Period periodStay = new Period(10, 13);
+        assertEquals(0, r.calculate(periodStay).intValue());
+    }
+    @DisplayName("Test VISITOR pays, expected 2.50")
+    @Test
+    void visitorPays(){
+        CarParkKind kind = CarParkKind.VISITOR;
+        BigDecimal normalRate = new BigDecimal(5);
+        BigDecimal reducedRate = new BigDecimal(3);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(10, 12));
+        normalPeriods.add(new Period(7, 10));
+        reducedPeriods.add(new Period(15, 17));
+        reducedPeriods.add(new Period(13, 15));
+
+        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        Period periodStay = new Period(9, 13);
+        assertEquals(2.50, r.calculate(periodStay).doubleValue());
+    }
+
 }
