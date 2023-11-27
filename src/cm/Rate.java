@@ -88,6 +88,9 @@ public class Rate {
         return isValid;
     }
     public BigDecimal calculate(Period periodStay) {
+        if (periodStay == null) {
+            throw new IllegalArgumentException("The Period object is null!!");
+        }
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
         if (this.kind==CarParkKind.VISITOR) return BigDecimal.valueOf(0);
