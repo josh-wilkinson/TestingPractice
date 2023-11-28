@@ -93,25 +93,21 @@ public class Rate {
         }
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-
         BigDecimal nRate = this.hourlyNormalRate;
         BigDecimal rRate = this.hourlyReducedRate;
-
         BigDecimal returnValue = nRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
                 rRate.multiply(BigDecimal.valueOf(reducedRateHours))
         );
-
-        // New VISITOR code is added here
-        if (this.kind==CarParkKind.VISITOR) {
-            if (returnValue.doubleValue() <= 10)
-                return BigDecimal.valueOf(0);
-            else{
-                // subtract 10, then halve the price.
-                returnValue = (returnValue.subtract(BigDecimal.valueOf(10))).multiply(BigDecimal.valueOf(0.5));
-            }
+        /* New VISITOR code is added here */
+        switch (this.kind){
+            case VISITOR:
+                if (returnValue.doubleValue() <= 10) // if the price is 10 or under
+                    return BigDecimal.valueOf(0);
+                else // subtract 10, then halve the price.
+                    returnValue = (returnValue.subtract(BigDecimal.valueOf(10))).multiply(BigDecimal.valueOf(0.5));
+                break;
         }
-        // End of new VISITOR code
-
+        /* End of new VISITOR code */
         return returnValue;
     }
 
