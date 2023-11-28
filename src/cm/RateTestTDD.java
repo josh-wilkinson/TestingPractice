@@ -33,4 +33,24 @@ public class RateTestTDD
         Period periodStay = new Period(9, 13);
         assertEquals(2.50, r.calculate(periodStay).doubleValue());
     }
+
+    // MANAGEMENT
+    @DisplayName("Test MANAGEMENT pays five, expected 5.0")
+    @Test
+    void managementPaysFive(){
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        BigDecimal normalRate = new BigDecimal(3);
+        BigDecimal reducedRate = new BigDecimal(2);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(10, 12));
+        reducedPeriods.add(new Period(15, 17));
+
+        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        Period periodStay = new Period(9, 11);
+        assertEquals(5.0, r.calculate(periodStay).doubleValue());
+    }
+
+
 }
