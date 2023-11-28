@@ -106,6 +106,10 @@ public class Rate {
                 else // subtract 10, then halve the price.
                     returnValue = (returnValue.subtract(BigDecimal.valueOf(10))).multiply(BigDecimal.valueOf(0.5));
                 break;
+            case MANAGEMENT:
+                if (returnValue.doubleValue() < 5)
+                    return BigDecimal.valueOf(5);
+                break;
         }
         /* End of new VISITOR code */
         return returnValue;
