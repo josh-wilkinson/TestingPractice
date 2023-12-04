@@ -102,16 +102,16 @@ public class Rate {
         /* New code is added here */
         switch (this.kind){
             case VISITOR:
-                rateKind = new VisitorRate();
+                rateKind = new VisitorBehaviour();
                 break;
             case MANAGEMENT:
-                rateKind = new ManagementRate();
+                rateKind = new ManagementBehaviour();
                 break;
             case STUDENT:
-                rateKind = new StudentRate();
+                rateKind = new StudentBehaviour();
                 break;
             case STAFF:
-                rateKind = new StaffRate();
+                rateKind = new StaffBehaviour();
                 break;
         }
         /* End of new code */

@@ -2,11 +2,13 @@ package cm;
 
 import java.math.BigDecimal;
 
+// Strategy Interface
 public interface RateKind
 {
     public BigDecimal paymentBehaviour(BigDecimal amount);
 }
-class VisitorRate implements RateKind{
+// Strategies
+class VisitorBehaviour implements RateKind{
     @Override
     public BigDecimal paymentBehaviour(BigDecimal amount) {
         if (amount.doubleValue() <= 10) // if the price is 10 or under
@@ -15,7 +17,7 @@ class VisitorRate implements RateKind{
             return amount.subtract(BigDecimal.valueOf(10)).multiply(BigDecimal.valueOf(0.5));
     }
 }
-class ManagementRate implements RateKind{
+class ManagementBehaviour implements RateKind{
     @Override
     public BigDecimal paymentBehaviour(BigDecimal amount) {
         if (amount.doubleValue() < 5)
@@ -23,7 +25,7 @@ class ManagementRate implements RateKind{
         return amount;
     }
 }
-class StudentRate implements RateKind{
+class StudentBehaviour implements RateKind{
     @Override
     public BigDecimal paymentBehaviour(BigDecimal amount) {
         if (amount.doubleValue() > 5.5) // if the price is above 5.50, take away 33%
@@ -32,7 +34,7 @@ class StudentRate implements RateKind{
         return amount;
     }
 }
-class StaffRate implements RateKind{
+class StaffBehaviour implements RateKind{
     @Override
     public BigDecimal paymentBehaviour(BigDecimal amount) {
         if (amount.doubleValue() > 10.0)
