@@ -67,8 +67,8 @@ public class RateTestTDD
         reducedPeriods.add(new Period(12, 14));
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        Period periodStay = new Period(10, 13);
-        assertEquals(6.66, r.calculate(periodStay).doubleValue());
+        Period periodStay = new Period(0, 11);
+        assertEquals(5.36, r.calculate(periodStay).doubleValue());
     }
 
 }

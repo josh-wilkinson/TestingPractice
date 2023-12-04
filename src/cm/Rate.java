@@ -110,6 +110,11 @@ public class Rate {
                 if (returnValue.doubleValue() < 5)
                     return BigDecimal.valueOf(5);
                 break;
+            case STUDENT:
+                if (returnValue.doubleValue() > 5.5) // if the price is above 5.50, take away 33%
+                    return BigDecimal.valueOf(returnValue.doubleValue()).subtract(
+                            BigDecimal.valueOf(returnValue.doubleValue()).multiply(BigDecimal.valueOf(0.33)));
+                break;
         }
         /* End of new VISITOR code */
         return returnValue;
