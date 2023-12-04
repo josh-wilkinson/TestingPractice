@@ -115,6 +115,10 @@ public class Rate {
                     return BigDecimal.valueOf(returnValue.doubleValue()).subtract(
                             BigDecimal.valueOf(returnValue.doubleValue()).multiply(BigDecimal.valueOf(0.33)));
                 break;
+            case STAFF:
+                if (returnValue.doubleValue() > 10.0)
+                    return BigDecimal.valueOf(10);
+                break;
         }
         /* End of new VISITOR code */
         return returnValue;
