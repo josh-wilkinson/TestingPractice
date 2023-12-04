@@ -72,7 +72,7 @@ public class RateTestTDD
     }
 
     // STAFF
-    @DisplayName("")
+    @DisplayName("Test STAFF pays max amount, expected 10")
     @Test
     void staffPaysMaxAmount(){
         CarParkKind kind = CarParkKind.STAFF;
