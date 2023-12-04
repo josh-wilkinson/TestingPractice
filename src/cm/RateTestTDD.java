@@ -71,4 +71,22 @@ public class RateTestTDD
         assertEquals(5.36, r.calculate(periodStay).doubleValue());
     }
 
+    // STAFF
+    @DisplayName("")
+    @Test
+    void staffPaysMaxAmount(){
+        CarParkKind kind = CarParkKind.STAFF;
+        BigDecimal normalRate = new BigDecimal(6);
+        BigDecimal reducedRate = new BigDecimal(3);
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+        normalPeriods.add(new Period(10, 12));
+        reducedPeriods.add(new Period(12, 14));
+
+        Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        Period periodStay = new Period(10, 12);
+        assertEquals(10, r.calculate(periodStay).doubleValue());
+    }
+
 }
