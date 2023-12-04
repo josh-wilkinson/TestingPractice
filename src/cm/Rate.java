@@ -98,30 +98,26 @@ public class Rate {
         BigDecimal returnValue = nRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
                 rRate.multiply(BigDecimal.valueOf(reducedRateHours))
         );
-        /* New VISITOR code is added here */
+
+        RateKind rateKind = null;
+
+        /* New code is added here */
         switch (this.kind){
             case VISITOR:
-                if (returnValue.doubleValue() <= 10) // if the price is 10 or under
-                    return BigDecimal.valueOf(0);
-                else // subtract 10, then halve the price.
-                    returnValue = (returnValue.subtract(BigDecimal.valueOf(10))).multiply(BigDecimal.valueOf(0.5));
+                rateKind = new VisitorRate();
                 break;
             case MANAGEMENT:
-                if (returnValue.doubleValue() < 5)
-                    return BigDecimal.valueOf(5);
+                rateKind = new ManagementRate();
                 break;
             case STUDENT:
-                if (returnValue.doubleValue() > 5.5) // if the price is above 5.50, take away 33%
-                    return BigDecimal.valueOf(returnValue.doubleValue()).subtract(
-                            BigDecimal.valueOf(returnValue.doubleValue()).multiply(BigDecimal.valueOf(0.33)));
+                rateKind = new StudentRate();
                 break;
             case STAFF:
-                if (returnValue.doubleValue() > 10.0)
-                    return BigDecimal.valueOf(10);
+                rateKind = new StaffRate();
                 break;
         }
-        /* End of new VISITOR code */
-        return returnValue;
+        /* End of new code */
+        return rateKind.paymentBehaviour(returnValue);
     }
 
 }
