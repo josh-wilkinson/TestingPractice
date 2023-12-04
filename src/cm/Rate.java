@@ -98,7 +98,7 @@ public class Rate {
         BigDecimal fee = normalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
                 reducedRate.multiply(BigDecimal.valueOf(reducedRateHours))
         );
-        RateKind rateKind = null;
+        PaymentStrategy rateKind = null;
         /* New code is added here */
         switch (this.kind){
             case VISITOR:

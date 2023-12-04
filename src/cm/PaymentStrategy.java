@@ -3,12 +3,12 @@ package cm;
 import java.math.BigDecimal;
 
 // Strategy Interface
-public interface RateKind
+public interface PaymentStrategy
 {
     public BigDecimal paymentBehaviour(BigDecimal amount);
 }
 // Strategies
-class VisitorBehaviour implements RateKind{
+class VisitorBehaviour implements PaymentStrategy{
     @Override
     public BigDecimal paymentBehaviour(BigDecimal amount) {
         if (amount.doubleValue() <= 10) // if the price is 10 or under
@@ -17,7 +17,7 @@ class VisitorBehaviour implements RateKind{
             return amount.subtract(BigDecimal.valueOf(10)).multiply(BigDecimal.valueOf(0.5));
     }
 }
-class ManagementBehaviour implements RateKind{
+class ManagementBehaviour implements PaymentStrategy{
     @Override
     public BigDecimal paymentBehaviour(BigDecimal amount) {
         if (amount.doubleValue() < 5)
@@ -25,7 +25,7 @@ class ManagementBehaviour implements RateKind{
         return amount;
     }
 }
-class StudentBehaviour implements RateKind{
+class StudentBehaviour implements PaymentStrategy{
     @Override
     public BigDecimal paymentBehaviour(BigDecimal amount) {
         if (amount.doubleValue() > 5.5) // if the price is above 5.50, take away 33%
@@ -34,7 +34,7 @@ class StudentBehaviour implements RateKind{
         return amount;
     }
 }
-class StaffBehaviour implements RateKind{
+class StaffBehaviour implements PaymentStrategy{
     @Override
     public BigDecimal paymentBehaviour(BigDecimal amount) {
         if (amount.doubleValue() > 10.0)
