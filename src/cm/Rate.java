@@ -93,14 +93,12 @@ public class Rate {
         }
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-        BigDecimal nRate = this.hourlyNormalRate;
-        BigDecimal rRate = this.hourlyReducedRate;
-        BigDecimal returnValue = nRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
-                rRate.multiply(BigDecimal.valueOf(reducedRateHours))
+        BigDecimal normalRate = this.hourlyNormalRate;
+        BigDecimal reducedRate = this.hourlyReducedRate;
+        BigDecimal fee = normalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
+                reducedRate.multiply(BigDecimal.valueOf(reducedRateHours))
         );
-
         RateKind rateKind = null;
-
         /* New code is added here */
         switch (this.kind){
             case VISITOR:
@@ -117,7 +115,7 @@ public class Rate {
                 break;
         }
         /* End of new code */
-        return rateKind.paymentBehaviour(returnValue);
+        return rateKind.paymentBehaviour(fee);
     }
 
 }
