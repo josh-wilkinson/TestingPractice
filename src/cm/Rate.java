@@ -98,24 +98,14 @@ public class Rate {
         BigDecimal fee = normalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
                 reducedRate.multiply(BigDecimal.valueOf(reducedRateHours))
         );
-        PaymentStrategy rateKind = null;
-        /* New code is added here */
-        switch (this.kind){
-            case VISITOR:
-                rateKind = new VisitorBehaviour();
-                break;
-            case MANAGEMENT:
-                rateKind = new ManagementBehaviour();
-                break;
-            case STUDENT:
-                rateKind = new StudentBehaviour();
-                break;
-            case STAFF:
-                rateKind = new StaffBehaviour();
-                break;
-        }
-        /* End of new code */
-        return rateKind.paymentBehaviour(fee);
+        // Enhanced switch statement
+        PaymentStrategy payment = switch (this.kind) {
+            case VISITOR -> new VisitorBehaviour();
+            case MANAGEMENT -> new ManagementBehaviour();
+            case STUDENT -> new StudentBehaviour();
+            case STAFF -> new StaffBehaviour();
+        };
+        return payment.paymentBehaviour(fee);
     }
 
 }
