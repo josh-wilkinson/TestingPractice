@@ -91,12 +91,12 @@ public class Rate {
         if (periodStay == null) {
             throw new IllegalArgumentException("The Period object is null!!");
         }
-        int normalRateHours = periodStay.occurences(normal);
-        int reducedRateHours = periodStay.occurences(reduced);
-        BigDecimal normalRate = this.hourlyNormalRate;
-        BigDecimal reducedRate = this.hourlyReducedRate;
-        BigDecimal fee = normalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
-                reducedRate.multiply(BigDecimal.valueOf(reducedRateHours))
+        final int NORMAL_RATE_HOURS = periodStay.occurences(normal);
+        final int REDUCED_RATE_HOURS = periodStay.occurences(reduced);
+        final BigDecimal NORMAL_RATE = this.hourlyNormalRate;
+        final BigDecimal REDUCED_RATE = this.hourlyReducedRate;
+        final BigDecimal RATE_FEE = NORMAL_RATE.multiply(BigDecimal.valueOf(NORMAL_RATE_HOURS)).add(
+                REDUCED_RATE.multiply(BigDecimal.valueOf(REDUCED_RATE_HOURS))
         );
         // Enhanced switch statement
         PaymentStrategy payment = switch (this.kind) {
@@ -105,7 +105,7 @@ public class Rate {
             case STUDENT -> new StudentBehaviour();
             case STAFF -> new StaffBehaviour();
         };
-        return payment.paymentBehaviour(fee);
+        return payment.paymentBehaviour(RATE_FEE);
     }
 
 }
