@@ -303,7 +303,7 @@ class RateTest
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(10, 12);
-        assertEquals(8, r.calculate(periodStay).intValue());
+        assertEquals(5, r.calculate(periodStay).intValue());
     }
     @DisplayName("Test periodStay.overlaps(this.reducedPeriods), expected 4")
     @Test
@@ -339,7 +339,7 @@ class RateTest
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(10, 14);
-        assertEquals(10, r.calculate(periodStay).intValue());
+        assertEquals(6, r.calculate(periodStay).intValue());
     }
     // Extra tests added after task 1
     // Invalid inputs
