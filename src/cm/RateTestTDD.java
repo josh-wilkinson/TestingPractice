@@ -53,7 +53,7 @@ public class RateTestTDD
     }
 
     // STUDENT
-    @DisplayName("Test STUDENT gets 33% discount, expected 6.66")
+    @DisplayName("Test STUDENT gets 33% discount, expected 5.90")
     @Test
     void studentGetsDiscount(){
         CarParkKind kind = CarParkKind.STUDENT;
@@ -68,7 +68,7 @@ public class RateTestTDD
 
         Rate r = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         Period periodStay = new Period(0, 11);
-        assertEquals(5.36, r.calculate(periodStay).doubleValue());
+        assertEquals(7.18, r.calculate(periodStay).doubleValue()); // the discount should apply after 5.50
     }
 
     // STAFF
