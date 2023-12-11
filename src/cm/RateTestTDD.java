@@ -53,7 +53,7 @@ public class RateTestTDD
     }
 
     // STUDENT
-    @DisplayName("Test STUDENT gets 33% discount, expected 5.90")
+    @DisplayName("Test STUDENT gets 33% discount after 5.50, expected 7.18")
     @Test
     void studentGetsDiscount(){
         CarParkKind kind = CarParkKind.STUDENT;
